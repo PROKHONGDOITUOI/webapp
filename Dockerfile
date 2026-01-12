@@ -1,2 +1,2 @@
 FROM nginx:alpine
-COPY . /usr/share/nginx/htmls
+COPY . /usr/share/nginx/htmlss
