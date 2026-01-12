@@ -1,12 +1,11 @@
-// CHỈ KHAI BÁO 1 LẦN DUY NHẤT Ở ĐÂY
-// Dùng var để tránh lỗi khi trình duyệt cache bản cũ
+// 1. Cấu hình (Dùng biến supabaseClient để không trùng với thư viện gốc)
 var supabaseUrl = 'https://fjhnxycygjlieotfqdiu.supabase.co';
 var supabaseKey = 'sb_publishable_7sYcsxE2aildw8VSUUtUtw_oKQJV46s';
-var supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
-// Các phần còn lại giữ nguyên...
+// Lệnh chuẩn của thư viện Supabase v2 là: supabase.createClient
+var supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-// --- Phần hiệu ứng trượt form (giữ lại giao diện của Phat) ---
+// --- Phần hiệu ứng trượt giao diện ---
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
@@ -24,10 +23,11 @@ if (signUpForm) {
         const email = signUpForm.querySelector('input[type="email"]').value;
         const password = signUpForm.querySelector('input[type="password"]').value;
 
-        const { data, error } = await supabase.auth.signUp({ email, password });
+        // Dùng supabaseClient ở đây
+        const { data, error } = await supabaseClient.auth.signUp({ email, password });
 
         if (error) alert("Lỗi đăng ký: " + error.message);
-        else alert("Đăng ký thành công! Kiểm tra email hoặc Supabase.");
+        else alert("Đăng ký thành công! Phat kiểm tra email hoặc Supabase nhé.");
     });
 }
 
@@ -39,7 +39,8 @@ if (signInForm) {
         const email = signInForm.querySelector('input[type="email"]').value;
         const password = signInForm.querySelector('input[type="password"]').value;
 
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        // Dùng supabaseClient ở đây
+        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
         if (error) alert("Đăng nhập thất bại: " + error.message);
         else alert("Chào mừng Phat đã quay trở lại!");
