@@ -1,7 +1,10 @@
 // CHỈ KHAI BÁO 1 LẦN DUY NHẤT Ở ĐÂY
-const supabaseUrl = 'https://fjhnxycygjlieotfqdiu.supabase.co';
-const supabaseKey = 'sb_publishable_7sYcsxE2aildw8VSUUtUtw_oKQJV46s';
-const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+// Dùng var để tránh lỗi khi trình duyệt cache bản cũ
+var supabaseUrl = 'https://fjhnxycygjlieotfqdiu.supabase.co';
+var supabaseKey = 'sb_publishable_7sYcsxE2aildw8VSUUtUtw_oKQJV46s';
+var supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+
+// Các phần còn lại giữ nguyên...
 
 // --- Phần hiệu ứng trượt form (giữ lại giao diện của Phat) ---
 const signUpButton = document.getElementById('signUp');
