@@ -1,19 +1,19 @@
-// CHỈ KHAI BÁO MỘT LẦN DUY NHẤT Ở ĐẦY
+// CHỈ KHAI BÁO 1 LẦN DUY NHẤT Ở ĐÂY
 const supabaseUrl = 'https://fjhnxycygjlieotfqdiu.supabase.co';
 const supabaseKey = 'sb_publishable_7sYcsxE2aildw8VSUUtUtw_oKQJV46s';
 const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
-// --- Phần hiệu ứng giao diện ---
+// --- Phần hiệu ứng trượt form (giữ lại giao diện của Phat) ---
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
-if (signUpButton && signInButton && container) {
+if (signUpButton && signInButton) {
     signUpButton.addEventListener('click', () => container.classList.add("right-panel-active"));
     signInButton.addEventListener('click', () => container.classList.remove("right-panel-active"));
 }
 
-// --- Phần xử lý ĐĂNG KÝ ---
+// --- Xử lý ĐĂNG KÝ ---
 const signUpForm = document.querySelector('.sign-up-container form');
 if (signUpForm) {
     signUpForm.addEventListener('submit', async (e) => {
@@ -24,11 +24,11 @@ if (signUpForm) {
         const { data, error } = await supabase.auth.signUp({ email, password });
 
         if (error) alert("Lỗi đăng ký: " + error.message);
-        else alert("Đăng ký thành công! Kiểm tra email hoặc Supabase nhé.");
+        else alert("Đăng ký thành công! Kiểm tra email hoặc Supabase.");
     });
 }
 
-// --- Phần xử lý ĐĂNG NHẬP ---
+// --- Xử lý ĐĂNG NHẬP ---
 const signInForm = document.querySelector('.sign-in-container form');
 if (signInForm) {
     signInForm.addEventListener('submit', async (e) => {
