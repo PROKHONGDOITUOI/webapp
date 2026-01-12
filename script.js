@@ -36,13 +36,20 @@ const signInForm = document.querySelector('.sign-in-container form');
 if (signInForm) {
     signInForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = signInForm.querySelector('input[type="email"]').value;
-        const password = signInForm.querySelector('input[type="password"]').value;
+        const email = signInForm.querySelector('input[type="email"]').value.trim();
+        const password = signInForm.querySelector('input[type="password"]').value.trim();
 
-        // Dùng supabaseClient ở đây
         const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-        if (error) alert("Đăng nhập thất bại: " + error.message);
-        else alert("Chào mừng Phat đã quay trở lại!");
+        if (error) {
+            alert("Đăng nhập thất bại: " + error.message);
+        } else {
+            // Lưu email vào bộ nhớ trình duyệt để hiển thị ở trang sau
+            localStorage.setItem('user_email', email);
+            alert("Chào mừng Phat đã quay trở lại!");
+            
+            // Lệnh chuyển hướng sang trang dashboard
+            window.location.href = "dashboard.html";
+        }
     });
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phat Dashboard - 3D Glass</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px; /* Tạo độ sâu 3D */
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .glass-card:hover {
+            transform: rotateY(10deg) rotateX(5deg); /* Hiệu ứng nghiêng 3D */
+        }
+        .user-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        button.logout {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <span class="user-icon">👤</span>
+        <h1>Hệ Thống Đã Sẵn Sàng</h1>
+        <p>Xin chào: <strong id="user-display">Đang tải...</strong></p>
+        <hr style="opacity: 0.2; margin: 20px 0;">
+        <p>Trạng thái Server: <span style="color: #4ee44e;">● Online</span></p>
+        <button class="logout" onclick="logout()">Đăng Xuất</button>
+    </div>
+
+    <script>
+        // Lấy email đã lưu lúc nãy hiện lên màn hình
+        document.getElementById('user-display').innerText = localStorage.getItem('user_email');
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
