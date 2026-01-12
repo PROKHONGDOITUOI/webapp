@@ -1,6 +1,12 @@
 version: '3.8'
+
 services:
-  web:
+  webapp:
     build: .
+    container_name: phat-web-app
     ports:
       - "80:80"
+    restart: always
+
+  # Sau này nếu bạn học thêm về SQL trong chương trình Thủy Lợi, 
+  # mình sẽ mở thêm service Database ở đây.
